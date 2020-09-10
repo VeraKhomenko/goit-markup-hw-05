@@ -96,18 +96,16 @@ li .title {
   width: calc((100% - 60px) / 3);
   margin-right: 30px;
   margin-bottom: 30px;
+  transition: background-color var(--time) var(--time-function);
 }
 
-/* portfolio shadow*/
 .portfolioelement:hover {
-  /* background: #FFFFFF; */
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-/* portfolio button*/
 .focused-button {
   display: inline-block;
   min-width: 73px;
@@ -176,6 +174,7 @@ svg {
   height: 44px;
   fill: currentColor;
   border-radius: 50%;
+  transition: background-color var(--time) var(--time-function);
 }
 
 .sociallinks a:hover,
@@ -195,7 +194,7 @@ svg {
 .clients {
   display: flex;
   box-sizing: border-box;
-  fill: currentColor;
+  /* --color1: #afb1b8; */
 }
 
 .clients .clients-icon {
@@ -204,14 +203,15 @@ svg {
   height: 90px;
   justify-content: center;
   align-items: center;
-  fill: currentColor;
+  fill: #afb1b8;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border var(--time) var(--time-function), fill var(--time) var(--time-function);
 }
 
 .clients .clients-icon:hover,
 .clients .clients-icon:focus {
-  --color1: var(--accent-color);
+  fill: var(--accent-color);
   border: 1px solid var(--accent-color);
 }
 
@@ -536,21 +536,29 @@ footer {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
+  overflow: auto;
 }
 
 .backdrop.is-hidden {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: 300ms linear 700ms;
 }
-
+.is-hidden .modal {
+  top: -100%;
+  transform: translateX(-50%) scale(0.1);
+}
 .modal {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  /* transition: transform 250ms ease; */
-  width: 528px;
-  height: 581px;
+  transform: translateX(-50%) scale(1);
+  width: 100%;
+  max-width: 528px;
+  min-height: 581px;
+  transition: all 700ms;
+
   background-color: var(--primary-background-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -602,19 +610,19 @@ address {
 .focused {
   font-weight: 400;
   color: var(--primary-text-color);
+  transition: color var(--time) var(--time-function);
 }
 
 .main-menu .focused.current,
 .focused:hover,
-.focused:focus,
-.focused:hover .icon,
-.focused:focus .icon {
+.focused:focus {
   color: var(--accent-color);
   --color2: var(--accent-color);
   --color3: var(--accent-color);
 }
 .focused.current {
   position: relative;
+  transition: color var(--time) var(--time-function);
 }
 .focused.current::after {
   content: '';
